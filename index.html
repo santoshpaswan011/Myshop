@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Website</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        html, body {
+            height: 100%;
+        }
+      
+
+        body {
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background-color: orangered;
+            padding: 30px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        .navbar a:hover {
+            color: #ddd;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            flex: 1;
+        }
+
+        .form-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 300px;
+            margin: 50px auto;
+        }
+
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background-color: green;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #555;
+        }
+
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .item-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .item-card img {
+            max-width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .item-card h3 {
+            margin: 10px 0;
+        }
+
+        .item-card p {
+            color: #555;
+        }
+
+        .item-card button {
+            margin-top: 10px;
+            padding: 8px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .item-card button:hover {
+            background-color: #555;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .cart-item button {
+            padding: 5px 10px;
+            background-color: red;
+        }
+
+        .cart-item button:hover {
+            background-color: red;
+        }
+
+        .carousel {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            text-align: center;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .carousel-item img {
+            max-width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .carousel-item h3 {
+            margin: 10px 0;
+        }
+
+        .carousel-item p {
+            color: #555;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .carousel-nav button {
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .carousel-nav button:hover {
+            background: rgba(0,0,0,0.7);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        footer {
+            background-color: black;
+            color: white;
+            padding: 20px;
+            width: 100%;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .footer-section {
+            flex: 1;
+            margin: 10px;
+            min-width: 200px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 15px;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .footer-section a:hover {
+            color: #ddd;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid #555;
+            #search-input {
+    background: white;
+    color: #333;
+    outline: none;
+}
+
+#search-input::placeholder {
+    color: #888;
+}
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div>
+            <a href="#" onclick="showSection('home')">My-Shop</a>
+        </div>
+        <div>
+        <input type="text" id="search-input" placeholder="Search products..." style="padding: 8px; border-radius: 4px; border: none; margin-right: 15px;">
+            <a href="#" onclick="showSection('items')">Items</a>
+            <a href="#" onclick="showSection('cart')" id="cart-link">Cart (<span id="cart-count">0</span>)</a>
+            <a href="#" onclick="showSection('login')" id="login-link">Login</a>
+            <a href="#" onclick="showSection('orders')">My Orders</a>
+            <a href="complaint.html" onclick="showSection('login')" id="complaint-link">Complaint</a>
+            <a href="#" onclick="showSection('register')" id="register-link">Register</a>
+            <a href="#" onclick="logout()" id="logout-link" class="hidden">Logout</a>
+
+            
+        </div>
+    </div>
+
+    <div class="container">
+     
+        <section id="home">
+            <h1>Welcome to My-Shop</h1>
+            <p>Browse our collection of amazing products!</p>
+            <div class="carousel">
+                <div class="carousel-track" id="carousel-track">
+                    <div class="carousel-item">
+                        <img src="iphone.webp" alt="Product 1">
+                        <h3>Product 1</h3>
+                        <p>$10999.99</p>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="shoes.webp" alt="Product 2">
+                        <h3>Product 2</h3>
+                        <p>$2999.99</p>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="shirt.webp" alt="Product 3">
+                        <h3>Product 3</h3>
+                        <p>$1999.99</p>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="pant.webp" alt="Product 3">
+                        <h3>Product 3</h3>
+                        <p>$1500.50</p>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="blazer.webp" alt="Product 3">
+                        <h3>Product 3</h3>
+                        <p>$2500.50</p>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="sherwani.webp" alt="Product 3">
+                        <h3>Product 3</h3>
+                        <p>$4999.99</p>
+                    </div>
+                </div>
+                <div class="carousel-nav">
+                    <button onclick="prevSlide()">❮</button>
+                    <button onclick="nextSlide()">❯</button>
+                </div>
+            </div>
+        </section>
+
+        
+        <section id="login" class="hidden">
+            <div class="form-container">
+                <h2>Login</h2>
+                <form id="login-form" onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" required>
+                    </div>
+                    <button type="submit" class="btn">Login</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="register" class="hidden">
+            <div class="form-container">
+                <h2>Register</h2>
+                <form id="register-form" onsubmit="handleRegister(event)">
+                    <div class="form-group">
+                        <label for="register-name">Name</label>
+                        <input type="text" id="register-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-email">Email</label>
+                        <input type="email" id="register-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password">Password</label>
+                        <input type="password" id="register-password" required>
+                    </div>
+                    <button type="submit" class="btn">Register</button>
+                </form>
+            </div>
+        </section>
+
+        
+        <section id="items" class="hidden">
+            <h2>Our Products</h2>
+            <div class="items-grid">
+                <div class="item-card">
+                    <img src="laptop.avif" alt="Laptop">
+                    <h3>Laptop</h3>
+                    <p>$199999.99</p>
+                    <button onclick="addToCart('Product 1', 199999.99)">Add to Cart</button>
+                </div>
+                <div class="item-card">
+                    <img src="dress.avif" alt="Dress">
+                    <h3>Dress</h3>
+                    <p>$2999.99</p>
+                    <button onclick="addToCart('Product 2', 2999.99)">Add to Cart</button>
+                </div>
+                <div class="item-card">
+                    <img src="fruits.avif" alt="Grocery">
+                    <h3>Grocery</h3>
+                    <p>$399.99</p>
+                    <button onclick="addToCart('Product 3', 399.99)">Add to Cart</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="cart" class="hidden">
+            <h2>Your Cart</h2>
+            <div id="cart-items"></div>
+            <p id="cart-empty" class="hidden">Your cart is empty.</p>
+            <h3 id="cart-total">Total: $0.00</h3>
+        </section>
+    </div>
+    <section id="orders" class="hidden">
+  <h2>My Orders</h2>
+  <div id="orders-container">
+    <p>Loading orders...</p>
+  </div>
+</section>
+
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: santoshnigam153@gmail.com</p>
+                <p>Phone: 6375565171</p>
+                <p>Address: 506 Boys Hostel GEC Vaishali,Bihar</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="#" onclick="showSection('home')">Home</a>
+                <a href="#" onclick="showSection('items')">Shop</a>
+                <a href="#" onclick="showSection('cart')">Cart</a>
+                <a href="#" onclick="showSection('orders')">My Orders</a>
+
+                <a href="#" onclick="showSection('login')">Login</a>
+                <a href="#" onclick="showSection('register')">Register</a>
+                <section id="orders" class="hidden">
+  
+
+            </div>
+            <div class="footer-section">
+                <h3>About E-Shop</h3>
+                <p>Your one-stop online store for quality products at great prices!</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Santosh-Shop.Develop by Me.</p>
+        </div>
+    </footer>
+
+    <script>
+        let cart = [];
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-item');
+        const totalSlides = slides.length;
+
+        function showSection(sectionId) {
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            document.getElementById(sectionId).classList.remove('hidden');
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            alert('Login successful! (This is a demo)');
+            document.getElementById('login-link').classList.add('hidden');
+            document.getElementById('register-link').classList.add('hidden');
+            document.getElementById('logout-link').classList.remove('hidden');
+            showSection('items');
+        }
+
+        function handleRegister(event) {
+            event.preventDefault();
+            alert('Registration successful! (This is a demo)');
+            document.getElementById('login-link').classList.add('hidden');
+            document.getElementById('register-link').classList.add('hidden');
+            document.getElementById('logout-link').classList.remove('hidden');
+            showSection('items');
+        }
+
+        function logout() {
+            alert('Logged out! (This is a demo)');
+            document.getElementById('login-link').classList.remove('hidden');
+            document.getElementById('register-link').classList.remove('hidden');
+            document.getElementById('logout-link').classList.add('hidden');
+            cart = [];
+            updateCart();
+            showSection('home');
+        }
+
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            updateCart();
+            alert(`${name} added to cart!`);
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartItems = document.getElementById('cart-items');
+            const cartEmpty = document.getElementById('cart-empty');
+            const cartTotal = document.getElementById('cart-total');
+            const cartCount = document.getElementById('cart-count');
+
+            cartItems.innerHTML = '';
+            if (cart.length === 0) {
+                cartEmpty.classList.remove('hidden');
+                cartTotal.textContent = 'Total: $0.00';
+            } else {
+                cartEmpty.classList.add('hidden');
+                let total = 0;
+                cart.forEach((item, index) => {
+                    total += item.price;
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'cart-item';
+                    itemDiv.innerHTML = `
+                        <span>${item.name} - $${item.price.toFixed(2)}</span>
+                        <button onclick="removeFromCart(${index})">Remove</button>
+                    `;
+                    cartItems.appendChild(itemDiv);
+                });
+                cartTotal.textContent = `Total: $${total.toFixed(2)}`;
+            }
+            cartCount.textContent = cart.length;
+        }
+
+        function updateCarousel() {
+            const track = document.getElementById('carousel-track');
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+
+        
+        setInterval(nextSlide, 3000);
+
+        showSection('home');
+        function searchItems() {
+    const searchInput = document.getElementById('search-input').value.toLowerCase();
+    const items = document.querySelectorAll('.item-card');
+
+    items.forEach(item => {
+        const name = item.querySelector('h3').textContent.toLowerCase();
+        if (name.includes(searchInput)) {
+            item.style.display = 'block';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+}
+
+document.getElementById('search-input').addEventListener('input', searchItems);
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>

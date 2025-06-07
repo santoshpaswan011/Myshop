@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title> Complain Your Product</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+    }
+    .container {
+      width: 50%;
+      margin: 50px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      margin-top: 20px;
+      padding: 12px 20px;
+      background: green;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: green;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Product Complaint Form</h2>
+    <form method="POST" action="submit_complaint.php" onsubmit="return validateForm()">
+      <label for="name">Name</label>
+      <input type="text" name="name" id="name" required>
+
+      <label for="email">Email</label>
+      <input type="email" name="email" id="email" required>
+
+      <label for="product">Product Name</label>
+      <input type="text" name="product" id="product" required>
+
+      <label for="issue">Describe Your Issue</label>
+      <textarea name="issue" id="issue" rows="5" required></textarea>
+
+      <button type="submit">Submit Complaint</button>
+    </form>
+  </div>
+
+  <script>
+    function validateForm() {
+      const fields = ['name', 'email', 'product', 'issue'];
+      for (let id of fields) {
+        if (document.getElementById(id).value.trim() === "") {
+          alert("Please fill all fields.");
+          return false;
+        }
+      }
+      return true;
+    }
+  </script>
+</body>
+</html>
